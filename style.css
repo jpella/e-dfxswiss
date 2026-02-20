@@ -53,6 +53,7 @@
 .together{
     display:flex;
     flex-direction: row;
+    justify-content: space-between;
     gap: 16px;
     align-items: center;
 }
@@ -151,6 +152,14 @@
     justify-content: space-between;
   }
 
+.together{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 150px;
+}
+
+
   .account-actions{
     display: none;
   }
@@ -192,6 +201,12 @@
   .hamburger {
     display: flex;
   }
+.together{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 200px;
+}
 
   .main-nav {
     position: absolute;
@@ -320,7 +335,7 @@
   }
 
   .hero {
-    background: url('https://assets.staticimg.com/brisk-web-ssr/3.3.30/ssr/_next/static/media/banner_preview.9aaee06967d4ad60cbf472cd748e069f.jpg') center center / cover no-repeat;
+    background: url("banner.jpg") center center / cover no-repeat;
   }
 }
 
