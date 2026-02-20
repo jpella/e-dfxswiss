@@ -307,6 +307,23 @@
 
 .btn-outline:hover{
   background:rgba(255,255,255,.08);
+
+  /* Default: video visible */
+.hero-video {
+  display: block;
+}
+
+/* Mobile fallback: hide video, show background image */
+@media (max-width: 768px) {
+  .hero-video {
+    display: none;
+  }
+
+  .hero {
+    background: url('https://assets.staticimg.com/brisk-web-ssr/3.3.30/ssr/_next/static/media/banner_preview.9aaee06967d4ad60cbf472cd748e069f.jpg') center center / cover no-repeat;
+  }
+}
+
 }
 /* Medium screens - tablets */
 @media (max-width: 1024px) {
