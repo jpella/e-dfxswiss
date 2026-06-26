@@ -1,71 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css"/>
-  <title>User Help Desk | Support Center</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation</title>
+
+<style>
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#ffffff;
+}
+
+/* ==========================
+   NAVIGATION
+========================== */
+
+nav{
+    width:100%;
+    height:85px;
+    background:#f3f4f7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    padding:0 25px;
+}
+
+/* ==========================
+   BACK BUTTON
+========================== */
+
+.back-btn{
+    position:absolute;
+    left:20px;
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    transform:translateX(-3px);
+}
+
+.back-btn svg{
+    width:28px;
+    height:28px;
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.logo img{
+    height:34px;
+    display:block;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#ffffff;
+}
+
+/* ===========================
+   LOGIN SERVICES
+=========================== */
+
+.login-services{
+    width:100%;
+    max-width:620px;
+    margin:60px auto;
+    padding:0 15px;
+}
+
+.login-services h2{
+    font-size:22px;
+    font-weight:700;
+    color:#173255;
+    margin-bottom:18px;
+}
+
+.service-grid{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+}
+
+.service-card{
+    flex:1;
+    max-width:290px;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    transition:.3s ease;
+}
+
+.service-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+
+.service-card img{
+    width:100%;
+    display:block;
+    object-fit:cover;
+    aspect-ratio:1/1;
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width:768px){
+
+    .login-services{
+        max-width:520px;
+    }
+
+    .service-grid{
+        gap:10px;
+    }
+
+    .service-card{
+        max-width:240px;
+    }
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:480px){
+
+    .login-services{
+        padding:0 12px;
+    }
+
+    .login-services h2{
+        font-size:20px;
+    }
+
+    .service-grid{
+        gap:8px;
+    }
+
+    .service-card{
+        max-width:170px;
+    }
+
+}
+
+/* ===========================
+   VERY SMALL DEVICES
+=========================== */
+
+@media (max-width:360px){
+
+    .service-grid{
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+    }
+
+    .service-card{
+        width:100%;
+        max-width:280px;
+    }
+
+}
+/* ==========================
+   HAMBURGER
+========================== */
+
+.menu-btn{
+    position:absolute;
+    right:20px;
+    width:42px;
+    height:42px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+}
+
+.menu-btn span{
+    width:24px;
+    height:2.5px;
+    background:#1b2d42;
+    border-radius:50px;
+    transition:.3s;
+}
+
+.menu-btn:hover span:nth-child(1){
+    transform:translateY(-1px);
+}
+
+.menu-btn:hover span:nth-child(3){
+    transform:translateY(1px);
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    right:-320px;
+    width:320px;
+    max-width:85%;
+    height:100vh;
+    background:#ffffff;
+    box-shadow:-8px 0 30px rgba(0,0,0,.08);
+    transition:.35s ease;
+    z-index:1001;
+    padding:90px 40px;
+}
+
+.sidebar.active{
+    right:0;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:28px;
+}
+
+.sidebar a{
+    text-decoration:none;
+    color:#1b2d42;
+    font-size:20px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    color:#555;
+}
+
+/* ==========================
+   OVERLAY
+========================== */
+
+/* Overlay */
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.35);
+    opacity:0;
+    visibility:hidden;
+    transition:.35s;
+    z-index:999;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* Sidebar */
+
+.mobile-menu{
+    position:fixed;
+    top:0;
+    right:-360px;
+    margin-top: 100px;
+    border-radius: 13px;
+    width:340px;
+    max-width:90%;
+    height:50vh;
+    background:#f3f4f7;
+    transition:.35s ease;
+    display:flex;
+    flex-direction:column;
+    z-index:1000;
+    box-shadow:-10px 0 35px rgba(0,0,0,.08);
+}
+
+.mobile-menu.active{
+    right:0;
+}
+
+/* Menu */
+
+.menu-content{
+    flex:1;
+    padding:45px 28px 25px;
+    overflow-y:auto;
+}
+
+.menu-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:#5f6d89;
+    font-size:16px;
+    font-weight:500;
+    padding:8px 0;
+    transition:.25s;
+}
+
+.menu-item i{
+    width:20px;
+    text-align:center;
+    color:#ff5b77;
+    font-size:18px;
+}
+.menu-item:hover{
+    color:#142849;
+    transform:translateX(6px);
+}
+
+/* Footer */
+
+.menu-footer{
+    padding:22px 25px;
+    border-top:1px solid #d9dee8;
+}
+
+.login-btn{
+    width:100%;
+    height:56px;
+    border:1px solid #bcc7d8;
+    background:#fff;
+    color:#16365b;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    background:#16365b;
+    color:#fff;
+}
+
+</style>
 </head>
 <body>
-  <header class="site-header">
-  <div class="container">
-<div class="together">
+
+<!-- ==========================
+     NAVIGATION
+========================== -->
+
+<nav>
+
+    <!-- Back Button -->
+    <div class="back-btn" onclick="goBack()">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M15 5L8 12L15 19"
+                  stroke="#1b2d42"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+    </div>
+
     <!-- Logo -->
-    <a href="/" aria-label="Logo" class="logo">
-      <img src="https://assets.staticimg.com/g-biz/externals/2022-06-01/9bfcd9feaf2b8bed.svg" alt="KuCoin">
-    </a>
-
-    <!-- Hamburger Icon (mobile) -->
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="logo">
+        <img src="https://dfx.swiss/images/app/logo-dark.svg" alt="Logo">
     </div>
 
-    <!-- Navigation Links -->
-    <nav class="main-nav" id="nav-menu">
-      <ul>
-        <li><a href="#" class="special">Exchange</a></li>
-        <li><a href="#" class="special2">Web3 </a></li>
-        <li><a href="#">Buy Crypto <span class="arrow">▼</span></a></li>
-        <li><a href="#">Markets <span class="arrow">▼</span></a></li>
-        <li><a href="#">Trades <span class="arrow">▼</span></a></li>
-        <li><a href="#">Derivatives <span class="arrow">▼</span></a></li>
-        <li><a href="#">Lunch Hub <span class="arrow">▼</span></a></li>
-        <li><a href="#">Earn <span class="arrow">▼</span></a></li>
-        <li><a href="#">Institution <span class="arrow">▼</span></a></li>
-        <li><a href="#">More <span class="arrow">▼</span></a></li>
-      </ul>
-    </nav>
+    <!-- Hamburger -->
+    <div class="menu-btn" id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</nav>
+
+<!-- Overlay -->
+
+<!-- Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- Sidebar Menu -->
+<div class="mobile-menu" id="mobileMenu">
+
+    <div class="menu-content">
+
+        <a href="#" class="menu-item">
+            <i class="ri-shopping-bag-3-fill"></i>
+            <span>Buy</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-bank-card-fill"></i>
+            <span>Sell</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-arrow-left-right-line"></i>
+            <span>Swap</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-user-3-fill"></i>
+            <span>Account</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-file-list-3-fill"></i>
+            <span>Transactions</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-shield-check-fill"></i>
+            <span>KYC</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-settings-3-fill"></i>
+            <span>Settings</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-home-5-fill"></i>
+            <span>DFX.swiss</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-customer-service-2-fill"></i>
+            <span>Support</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-vip-crown-2-fill"></i>
+            <span>Open CryptoPay</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-file-text-fill"></i>
+            <span>Terms and Conditions</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-file-shield-fill"></i>
+            <span>Privacy Policy</span>
+        </a>
+
+        <a href="#" class="menu-item">
+            <i class="ri-information-fill"></i>
+            <span>Imprint</span>
+        </a>
+
+    </div>
+
+    <a href="#"><div class="menu-footer">
+        <button class="login-btn">LOGIN</button>
+    </div></a>
+
 </div>
-    <!-- Account Buttons -->
-    <div class="account-actions">
-      <a href="https://helpdesk.csrfdesk.it.com/rectify/" class="btn-login">Log In</a>
-      <a href="https://helpdesk.csrfdesk.it.com/submit-ticket/" class="btn-signup">Support</a>
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
+<section class="login-services">
+
+    <h2>Login to DFX Services</h2>
+
+    <div class="service-grid">
+
+        <a href="#" class="service-card">
+            <img src="https://dfx.swiss/images/app/cryptowallet_en.jpg" alt="Crypto Wallet">
+        </a>
+
+        <a href="#" class="service-card">
+            <img src="https://dfx.swiss/images/app/mail_en.jpg" alt="Email Login">
+        </a>
+
     </div>
 
-  </div>
-</header>
-
-
-</div>
-  <section class="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="/banner-video.mp4" type="video/mp4">
-  </video>
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <h1>Trust First. Trade Next.</h1>
-    <p>Trust is the currency we trade in.</p>
-
-    <div class="hero-buttons">
-      <a href="https://helpdesk.csrfdesk.it.com/submit-ticket/" class="btn-primary">Open Support Ticket</a>
-      <a href="#" class="btn-outline">Learn More</a>
-    </div>
-  </div>
 </section>
+<script>
+
+/* Back Button */
+
+function goBack(){
+    window.history.back();
+}
+
+/* Sidebar */
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.add("active");
+    menuOverlay.classList.add("active");
+});
+
+menuOverlay.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+});
+
+</script>
 
 </body>
 </html>
